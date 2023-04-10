@@ -1,0 +1,15 @@
+{% extends 'SistCont/main.html' %}
+
+{% block content %}
+<form action="/nuevo_tipocuenta/" method="POST"> 
+    {% csrf_token %}
+    {{form.as_p}}
+    <div class="modal-footer">
+        <div class="bd-example">
+    <a href="{% url 'lista_tipocuenta' %}" type="button" class="btn btn-danger">Cancelar</a>
+    <button class="btn btn-success" type="submit">Agregar</button>
+</div>
+    </div>
+    
+</form>
+{% endblock %}
