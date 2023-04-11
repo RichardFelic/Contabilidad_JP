@@ -77,6 +77,11 @@ jobs:
           az account show
           az group list
           pwd 
+          
+      - name: 'Az CLI login'
+        uses: azure/login@v1
+        with:
+          credentials: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
