@@ -30,6 +30,10 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
+          
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       
       - name: Install dependencies
         run: pip freeze > requirements.txt
@@ -60,24 +64,6 @@ jobs:
         with:
           name: python-app
           path: .
-          
-
-      
-      - name: Install Azure CLI
-        run: |
-          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-      
-      - name: 'Run az commands'
-        run: |
-          az login
-          az account show
-          az group list
-          pwd 
-          
-      - name: 'Az CLI login'
-        uses: azure/login@v1
-        with:
-          credentials: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
