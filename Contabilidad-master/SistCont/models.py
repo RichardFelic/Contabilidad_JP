@@ -22,7 +22,7 @@ class TipoCuenta(models.Model):
         return self.descripcion
     
 class CatalogoAuxiliares(models.Model):
-    id_EC = models.CharField(max_length=10, unique=True)
+    id_EC = models.CharField(max_length=10, unique=True, blank=True)
     descripcion= models.CharField(max_length=50)
     id_aux= models.IntegerField(choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), (6, '6'), (7, '7'), (8, '8'), (9, '9')], null=True)
     cuenta = models.CharField(max_length=50, null=True)
