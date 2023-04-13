@@ -46,7 +46,7 @@ class CatalogoAuxiliares(models.Model):
 
 
 class Auxiliar(models.Model):
-    id_EC = models.CharField(max_length=10, unique=True, default="EC1")
+    id_EC = models.CharField(max_length=10, unique=True, blank=True)
     id_aux = models.IntegerField(choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), (6, '6'), (7, '7'), (8, '8'), (9, '9')], default=1)
     nombre_aux = models.CharField(max_length=50)
     cuenta = models.ForeignKey(TipoCuenta, on_delete=models.CASCADE, null=True)
@@ -64,9 +64,9 @@ class Auxiliar(models.Model):
             if ult_obj:
                 ult_cod = ult_obj.id_EC
                 num = int(ult_cod[2:])
-                self.id_EC = 'EC{}'.format(num +1)
+                self.id_EC = 'AC{}'.format(num +1)
             else:
-                self.id_EC = 'EC1'
+                self.id_EC = 'AC1'
         super(Auxiliar, self).save(*args, **kwargs)
 
     

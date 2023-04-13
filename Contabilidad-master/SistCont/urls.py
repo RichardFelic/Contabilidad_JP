@@ -32,6 +32,7 @@ urlpatterns = [
     path('nuevo_auxiliar/',views.nuevo_auxiliar, name='nuevo_auxiliar'),
     path('editar_auxiliar/<str:pk>/',views.editar_auxiliar, name='editar_auxiliar'),
     path('eliminar_auxiliar/<str:pk>/',views.eliminar_auxiliar, name='eliminar_auxiliar'),
+    path('ver_auxiliar/<str:pk>/',views.ver_auxiliar, name='ver_auxiliar'),
 
     #ENTRADA CONTABLE
     path('lista_entradacontable/',views.lista_entradacontable, name='lista_entradacontable'),

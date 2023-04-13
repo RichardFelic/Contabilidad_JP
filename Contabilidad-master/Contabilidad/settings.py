@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'Contabilidad.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
-        'NAME': 'BD_CONT',
+        'NAME': 'BD_CONT_JP',
         'USER': '',
         'PASSWORD': '',
         'HOST':'LAPTOP-HFNNO8HO\SQLEXPRESS',

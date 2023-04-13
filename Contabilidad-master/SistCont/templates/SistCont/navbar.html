@@ -11,11 +11,10 @@
             <a href="{% url 'lista_tipocuenta' %}" class="nav-item nav-link">Tipos de cuenta</a>
             <a href="{% url 'lista_tipomoneda' %}" class="nav-item nav-link">Tipos de moneda</a>
             <a href="{% url 'lista_auxiliar' %}" class="nav-item nav-link">Auxiliares</a>
-            <a href="{% url 'lista_entradacontable' %}" class="nav-item nav-link">Entrada contable</a>
             <div class="nav-item dropdown">
                 <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle">Otros</a>
-                <div class="dropdown-menu">					
-                    <a href="#" class="dropdown-item">No se si se va usar pero por si acaso</a>
+                <div class="dropdown-menu">		
+                    <a href="{% url 'lista_entradacontable' %}" class="dropdown-item">Entrada contable</a>			
                 </div>
             </div>
         </div>

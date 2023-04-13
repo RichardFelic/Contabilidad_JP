@@ -33,8 +33,7 @@
                         <td>{{i.estado}}</td>
                         <td>
                             <a href="/editar_tipocuenta/{{i.id}}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="{% url 'eliminar_tipocuenta' i.id %}" class="delete" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
+                            <a href="{% url 'eliminar_tipocuenta' i.id %}" class="delete" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>                        </td>
                     </tr>{% endfor %}
                 </tbody>
             </table>

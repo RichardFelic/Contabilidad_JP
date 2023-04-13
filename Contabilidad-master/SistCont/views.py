@@ -43,9 +43,13 @@ def editar_catalogocuenta(request, pk):
     return render(request, 'SistCont/CRUDS/editar_catalogocuenta.html', context)
 
 def eliminar_catalogocuenta(request, pk):
-    cuenta = get_object_or_404(CatalogoCuentas, pk=pk)
-    cuenta.delete()
-    return redirect('lista_catalogocuenta')
+    cuenta = CatalogoCuentas.objects.get(pk=pk)
+    if request.method == 'POST':
+        cuenta.delete()
+        return redirect('lista_catalogocuenta')
+    context = {'cuenta':cuenta}
+    return render(request, 'SistCont/CRUDS/borrar_catalogocuenta.html', context)
+
 
 #CRUD TIPOCUENTA
 def lista_tipocuenta(request):
@@ -76,9 +80,14 @@ def editar_tipocuenta(request, pk):
     return render(request, 'SistCont/CRUDS/editar_tipocuenta.html', context)
 
 def eliminar_tipocuenta(request, pk):
-    tipo = get_object_or_404(TipoCuenta, pk=pk)
-    tipo.delete()
-    return redirect('lista_tipocuenta')
+    tipo = TipoCuenta.objects.get(pk=pk)
+    if request.method == 'POST':
+        tipo.delete()
+        return redirect('lista_tipocuenta')
+    context = {'tipo':tipo}
+    return render(request, 'SistCont/CRUDS/borrar_tipocuenta.html', context)
+
+
 
 #CRUD TIPOMONEDA
 def lista_tipomoneda(request):
@@ -109,18 +118,17 @@ def editar_tipomoneda(request, pk):
     return render(request, 'SistCont/CRUDS/editar_tipomoneda.html', context)
     
 def eliminar_tipomoneda(request, pk):
-    moneda = get_object_or_404(TipoMoneda, pk=pk)
-    moneda.delete()
-    return redirect('lista_tipomoneda')
+    moneda = TipoMoneda.objects.get(pk=pk)
+    if request.method == 'POST':
+        moneda.delete()
+        return redirect('lista_tipomoneda')
+    context = {'moneda':moneda}
+    return render(request, 'SistCont/CRUDS/borrar_tipomoneda.html', context)
 
 #CRUD AUXILIAR
 def lista_auxiliar(request):
     auxiliar = Auxiliar.objects.all()
     return render(request, 'SistCont/lista_auxiliar.html', {'auxiliar': auxiliar})
-
-#class SnippetList(generics.ListCreateAPIView):
- #   queryset = Snippet.objects.all()
- #   serializer_class = SnippetSerializer
 
 def nuevo_auxiliar(request):
     if request.method == 'POST':
@@ -146,10 +154,17 @@ def editar_auxiliar(request, pk):
     return render(request, 'SistCont/CRUDS/editar_auxiliar.html', context)       
         
 def eliminar_auxiliar(request, pk):
-    auxiliar = get_object_or_404(Auxiliar, pk=pk)
-    auxiliar.delete()
-    return redirect('lista_auxiliar')
+    auxiliar = Auxiliar.objects.get(pk=pk)
+    if request.method == 'POST':
+        auxiliar.delete()
+        return redirect('lista_auxiliar')
+    context = {'auxiliar':auxiliar}
+    return render(request, 'SistCont/CRUDS/borrar_auxiliar.html', context)   
 
+def ver_auxiliar(request, pk):
+    auxiliar = Auxiliar.objects.get(pk=pk)
+    context = {'auxiliar':auxiliar}
+    return render(request, 'SistCont/CRUDS/ver_auxiliar.html', context)   
 
 #ENTRADA CONTABLE
 def lista_entradacontable(request):
@@ -170,7 +185,7 @@ def transferir_registro(request, pk):
     try:
         for i in aux:
             CatalogoAuxiliares.objects.create(
-                id_EC = i.id_EC,
+                id_EC = 'EC{}'.format(i.id_EC[2:]),
                 id_aux = str(i.id_aux),
                 descripcion = i.nombre_aux,
                 cuenta = i.cuenta,
