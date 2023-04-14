@@ -17,7 +17,7 @@ class TipoCuentaForm(forms.ModelForm):
 class TipoMonedaForm(forms.ModelForm):
     class Meta:
         model = TipoMoneda
-        fields = '__all__'
+        fields = ['descripcion','codigo_iso', 'estado' ]
 
 
 class AuxiliarForm(forms.ModelForm):

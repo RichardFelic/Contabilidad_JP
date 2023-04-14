@@ -98,7 +98,8 @@ def nuevo_tipomoneda(request):
     if request.method == 'POST':
         form = TipoMonedaForm(request.POST)
         if form.is_valid():
-            form.save()
+            tipo_moneda=form.save()
+            tipo_moneda.obtener_tasa_cambiaria()
             return redirect('lista_tipomoneda')
     else:
         form = TipoMonedaForm()
@@ -112,7 +113,8 @@ def editar_tipomoneda(request, pk):
         return redirect('lista_tipomoneda')
     form = TipoMonedaForm(request.POST or None, instance=moneda)
     if form.is_valid():
-        form.save()
+        tipo_moneda = form.save()
+        tipo_moneda.obtener_tasa_cambiaria()
         return redirect('lista_tipomoneda')
     context = {'form':form, 'moneda':moneda}
     return render(request, 'SistCont/CRUDS/editar_tipomoneda.html', context)
@@ -195,6 +197,9 @@ def transferir_registro(request, pk):
                 estado= True
             )
         #Auxiliar.objects.filter(pk=pk).delete()
+            i.transferido = True # actualiza el campo transferido a True
+            i.save()
+        messages.success(request, "Los registros se han transferido correctamente.")
     except IntegrityError:
         messages.error(request, "BIEN")
         return redirect('lista_auxiliar')

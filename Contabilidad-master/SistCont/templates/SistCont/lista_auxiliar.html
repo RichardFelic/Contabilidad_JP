@@ -21,6 +21,7 @@
                         <th>Asiento</th>
                         <th>Nombre</th>
                         <th>Estado</th>
+                        <th>Transferido</th>
                         <th>Acciones</th> 
                     </tr>
                 </thead>
@@ -30,6 +31,7 @@
                         <th>{{i.id_EC}}</th>
                         <td>{{i.nombre_aux}}</td>
                         <td>{{i.estado}}</td>
+                        <td>{{i.get_estado_display}}</td>
                         <td>
                             <div class="nav-item dropdown">
                                 <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle"><i class="material-icons" data-toggle="tooltip" title="Acciones">&#xe5d3;</i></a>
