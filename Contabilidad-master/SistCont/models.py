@@ -121,8 +121,4 @@ class CatalogoCuentas(models.Model):
             raise ValidationError("El valor de 'balance' no puede ser negativo.")
         super().clean()
         
-    def clean(self):
-        cleaned_data = super().clean()
-        estado = cleaned_data.get("estado")
-        if not estado:
-            raise forms.ValidationError("La cuenta contable no está disponible")
+    
